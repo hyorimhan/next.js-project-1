@@ -4,7 +4,12 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Pokemon } from '@/types/type';
 import { useQuery } from '@tanstack/react-query';
-import { getPokemons } from '../app/page';
+
+export const getPokemons = async () => {
+  const res = await fetch('http://localhost:3000/api/pokemons');
+  const data: Pokemon[] = await res.json();
+  return data;
+};
 
 const PokemonsItem = () => {
   const {
