@@ -1,4 +1,11 @@
 import PokemonListPage from './pokemonlist/page';
+import { Pokemon } from '@/types/type';
+
+export const getPokemons = async () => {
+  const res = await fetch('http://localhost:3000/api/pokemons');
+  const data: Pokemon[] = await res.json();
+  return data;
+};
 
 export default function Home() {
   return (
