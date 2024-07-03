@@ -3,15 +3,15 @@
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Pokemon } from '../types/type';
+import { Pokemon } from '@/types/type';
 
-const pokemonsItem = () => {
+const PokemonsItem = () => {
   const [pokemons, setPokemons] = useState<Pokemon[]>([]);
 
   useEffect(() => {
     const getPokemons = async () => {
       const res = await fetch('http://localhost:3000/api/pokemons');
-      const data = await res.json();
+      const data: Pokemon[] = await res.json();
       setPokemons(data);
     };
     getPokemons();
@@ -40,4 +40,4 @@ const pokemonsItem = () => {
   );
 };
 
-export default pokemonsItem;
+export default PokemonsItem;
