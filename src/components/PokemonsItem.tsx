@@ -2,9 +2,10 @@
 
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { Pokemon } from '../types/type';
 
-const PokemonsComponents = () => {
+const pokemonsItem = () => {
   const [pokemons, setPokemons] = useState<Pokemon[]>([]);
 
   useEffect(() => {
@@ -21,15 +22,17 @@ const PokemonsComponents = () => {
       {pokemons.map((pokemon) => {
         return (
           <div key={pokemon.id} className="border">
-            <Image
-              src={pokemon.sprites.front_default}
-              width={100}
-              height={100}
-              alt="pokemon img"
-              className="mx-auto"
-            />
-            <div> {pokemon.korean_name}</div>
-            {`도감번호: ${pokemon.id}`}
+            <Link href={`/detailPage/${pokemon.id}`}>
+              <Image
+                src={pokemon.sprites.front_default}
+                width={100}
+                height={100}
+                alt="pokemon img"
+                className="mx-auto"
+              />
+              <div> {pokemon.korean_name}</div>
+              {`도감번호: ${pokemon.id}`}
+            </Link>
           </div>
         );
       })}
@@ -37,4 +40,4 @@ const PokemonsComponents = () => {
   );
 };
 
-export default PokemonsComponents;
+export default pokemonsItem;
